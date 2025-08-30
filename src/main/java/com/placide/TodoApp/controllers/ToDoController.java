@@ -19,8 +19,21 @@ public class ToDoController {
         return todoService.createTask(task);
     }
 
-    @GetMapping("all")
+    @GetMapping
     public ResponseEntity<List<ToDoModel>> getAllTasks(){
         return ResponseEntity.ok(todoService.getAllTask());
+    }
+
+    @GetMapping("byId")
+    public ResponseEntity<ToDoModel> getTaskById(@RequestParam int id){
+        return ResponseEntity.ok(todoService.getTaskById(id));
+    }
+    @PutMapping
+    public ResponseEntity<ToDoModel> updateTask(@RequestBody ToDoModel task){
+        return ResponseEntity.ok(todoService.updateTask(task));
+    }
+    @DeleteMapping
+    public ResponseEntity<String> deleteTask(@RequestParam int id){
+        return ResponseEntity.ok(todoService.deleteTaskById(id));
     }
 }
